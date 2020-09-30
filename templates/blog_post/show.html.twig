@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BlogPost{% endblock %}
+
+{% block body %}
+    <h1>BlogPost</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Title</th>
+                <td>{{ blog_post.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ blog_post.content }}</td>
+            </tr>
+            <tr>
+                <th>Banner</th>
+                <td>{{ blog_post.banner }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ blog_post.date ? blog_post.date|date('d-m-Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Email de l'auteur</th>
+                <td>{{ blog_post.author }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <h3>Commentaire !!!</h3>
+    <div class="comments">
+        {% for comm in blog_post.comments %}
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ comm.email }}</td>
+                        <th>Pseudo</th>
+                        <td>{{ comm.pseudo }}</td>
+                        <th>Contenu</th>
+                        <td>{{ comm.content }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endfor %}
+    </div>
+    <br>
+    
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+
+
+
+    <a href="{{ path('home') }}">back to list</a>
+
+{% endblock %}
