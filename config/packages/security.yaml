@@ -1,4 +1,6 @@
 security:
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_ADMIN_BDD, ROLE_ADMIN_ARTICLE]
     encoders:
         App\Entity\User:
             algorithm: auto
@@ -35,4 +37,4 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/blog, roles: ROLE_USER }
+        - { path: ^/blog/post/new, roles: ROLE_USER }
