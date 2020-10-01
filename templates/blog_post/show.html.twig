@@ -23,9 +23,13 @@
                 <th>Date</th>
                 <td>{{ blog_post.date ? blog_post.date|date('d-m-Y') : '' }}</td>
             </tr>
-            <tr>
+            {# <tr>
                 <th>Email de l'auteur</th>
                 <td>{{ blog_post.author }}</td>
+            </tr> #}
+            <tr>
+                <th>Autheurr</th>
+                <td><a href="{{ path('user_show', {'id': blog_post.author.id}) }}">{{ blog_post.author }}</a></td>
             </tr>
         </tbody>
     </table>
@@ -33,7 +37,7 @@
 
     <h3>Commentaire !!!</h3>
     <div class="comments">
-        {% for comm in blog_post.comments %}
+        {% for comm in comments %}
             <table class="table">
                 <tbody>
                     <tr>

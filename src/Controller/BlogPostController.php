@@ -77,6 +77,7 @@ class BlogPostController extends AbstractController
 
         return $this->render('blog_post/show.html.twig', [
             'blog_post' => $blogPost,
+            'comments' => $this->getDoctrine()->getRepository(Comment::class)->findBy(["related" => $blogPost], ["id" => "DESC"], 30),
             'form' => $form->createView(),
 
         ]);
