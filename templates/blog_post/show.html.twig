@@ -33,7 +33,7 @@
             </tr>
         </tbody>
     </table>
-
+{# 
 
     <h3>Commentaire !!!</h3>
     <div class="comments">
@@ -53,14 +53,28 @@
         {% endfor %}
     </div>
     <br>
-    
+     #}
+    <div>
+        <h3>Commentaire :</h3>
+        {% for comment in comments|slice(0, 30) %}
+            <h2> Pseudo : {{ comment.pseudo}} </h2>
+            <div>
+                <p>{{ comment.content }}</p>
+            </div>
+            {% if app.user %}
+                {% if is_granted('ROLE_ADMIN') or app.user.username  == blog_post.author %}
+                    <a href="{{ path('comment_delete', {'id': comment.id}) }}">Delete</a>
+                {% endif %}
+            {% endif %}
+
+            <hr>
+        {% endfor %}
+    </div>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <button class="btn">{{ button_label|default('Save') }}</button>
     {{ form_end(form) }}
-
-
 
 
     <a href="{{ path('home') }}">back to list</a>

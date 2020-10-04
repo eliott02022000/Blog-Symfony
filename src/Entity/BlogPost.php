@@ -49,9 +49,15 @@ class BlogPost
      */
     private $comments;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=BlogpostCategory::class, mappedBy="category")
+     */
+    private $blogpostCategories;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->blogpostCategories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,6 +151,34 @@ class BlogPost
             if ($comment->getrelated() === $this) {
                 $comment->setrelated(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|BlogpostCategory[]
+     */
+    public function getBlogpostCategories(): Collection
+    {
+        return $this->blogpostCategories;
+    }
+
+    public function addBlogpostCategory(BlogpostCategory $blogpostCategory): self
+    {
+        if (!$this->blogpostCategories->contains($blogpostCategory)) {
+            $this->blogpostCategories[] = $blogpostCategory;
+            $blogpostCategory->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBlogpostCategory(BlogpostCategory $blogpostCategory): self
+    {
+        if ($this->blogpostCategories->contains($blogpostCategory)) {
+            $this->blogpostCategories->removeElement($blogpostCategory);
+            $blogpostCategory->removeCategory($this);
         }
 
         return $this;
