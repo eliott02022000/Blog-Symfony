@@ -27,7 +27,6 @@
                 <td>{{ blog_post.date ? blog_post.date|date('Y-m-d') : '' }}</td>
                 <td>
                     <a href="{{ path('blog_post_show', {'id': blog_post.id}) }}">show</a>
-                    <a href="{{ path('blog_post_edit', {'id': blog_post.id}) }}">edit</a>
                 </td>
                 <td>{{ blog_post.author }}</td>
             </tr>

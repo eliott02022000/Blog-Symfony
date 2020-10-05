@@ -8,15 +8,15 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Title</th>
+                <th>Titre</th>
                 <td>{{ blog_post.title }}</td>
             </tr>
             <tr>
-                <th>Content</th>
+                <th>Contenu</th>
                 <td>{{ blog_post.content }}</td>
             </tr>
             <tr>
-                <th>Banner</th>
+                <th>Banniere</th>
                 <td>{{ blog_post.banner }}</td>
             </tr>
             <tr>
@@ -28,7 +28,7 @@
                 <td>{{ blog_post.author }}</td>
             </tr> #}
             <tr>
-                <th>Autheurr</th>
+                <th>Auteurr</th>
                 <td><a href="{{ path('user_show', {'id': blog_post.author.id}) }}">{{ blog_post.author }}</a></td>
             </tr>
         </tbody>
